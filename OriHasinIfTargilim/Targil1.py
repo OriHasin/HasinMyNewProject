@@ -4,4 +4,4 @@ if (num + num2) % 2 == 0:
     print("Good")
 else:
     print("Not good")
-    print("Good job , be positive.")
+    
