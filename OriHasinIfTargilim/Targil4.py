@@ -6,3 +6,4 @@ if Space < 0:
     print("The answer is: " + str(Space))
 else:
     print("The answer is: " + str(Space))
+print("Hey")
