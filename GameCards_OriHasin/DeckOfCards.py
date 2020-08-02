@@ -6,8 +6,8 @@ class DeckOfCards:
     #list1 - רשימה של סוגי קלפים  list2 - רשימה של ערכי קלפים   list3 - רשימה המכילה 52 קלפים
 
     def __init__(self):                 #מתודת קונסטרקטור
-        self.list1=["Heart","Club","Diamond","Spade"]
-        self.list2=["1","2","3","4","5","6","7","8","9","Prince","Queen","King","Ace"]
+        self.list1=["♦","♠","♥","♣"]
+        self.list2=["2","3","4","5","6","7","8","9","10","Prince","Queen","King","Ace"]
         self.list3=[]
         for i in self.list1:
             for x in self.list2:
@@ -24,4 +24,4 @@ class DeckOfCards:
         shuffle(self.list3)
     def show(self):                   #מדפיסה את רשימת הקלפים
         for i in self.list3:
-            print(f'Card Details: {i.Suit} , {i.Value}' , end=' ')
+            print(f'Card Details: {i.Suit} : {i.Value}' , end=' ')

@@ -10,12 +10,15 @@ class Player:
         self.NumOfCards=NumOfCards
         self.list1=[]
 
+    def __repr__(self):  # מתודה המדפיסה פרטי שחקן
+            return (f'Player Details: {self.Name} , {self.Amount} , {self.list1}')
+
     def setHand(self, list2): #מתודה היוצרת חבילת קלפים
         for i in range(self.NumOfCards):
             self.list1.append(list2.pop())
 
     def getCard(self): #מתודה המושכת קלף מהשחקן
-        return choice(self.list1)
+        return self.list1.pop()
 
     def addCard(self,card): #מתודה המוסיפה קלף לשחקן
         self.list1.append(card)
@@ -24,7 +27,4 @@ class Player:
         self.Amount-=amount
 
     def addAmount(self,amount): #מתודה המוסיפה סכום לשחקן
-        self.amount+=amount
-
-    def Print(self): #מתודה המדפיסה פרטי שחקן
-        print(f'Player Details: {self.Name} , {self.Amount} , {self.list1}')
+        self.Amount+=amount

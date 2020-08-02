@@ -11,21 +11,22 @@ class CardGame:
         Amount=randint(5000,10000)
         self.Deck=DeckOfCards()
         self.NumOfCards=NumOfCards
-        self.Player1=Player('Ori',Amount)
-        self.Player2=Player('Ziv',Amount)
-        self.Player3=Player('Roy',Amount)
-        self.Player4=Player('Orly',Amount)
+        self.Player1=Player(input("Enter name of player: "),Amount)
+        self.Player2=Player(input("Enter name of player: "),Amount)
+        self.Player3=Player(input("Enter name of player: "),Amount)
+        self.Player4=Player(input("Enter name of player: "),Amount)
         self.listPlayers=[self.Player1,self.Player2,self.Player3,self.Player4]
         self.newGame()
         for i in self.listPlayers:
-            i.Print()
+            print(i.__repr__())
 
     def newGame(self): #מתודה המערבבת חפיסת קלפים ומחלקת קלפים ל-4 שחקנים
         self.Deck.Shuflle()
         for i in self.listPlayers:
-            i.NumOfCards=self.NumOfCards #מספר קלפים עדכני שיחולק לכל שחקן
+            i.NumOfCards=self.NumOfCards #מספר קלפים עדכני שיחולק לכל שחקן,יתעדכן במצב של שונה מ-5
             i.setHand(self.Deck.list3)
-a=CardGame()
+
+
 
 
 
