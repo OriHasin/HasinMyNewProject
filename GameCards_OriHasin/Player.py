@@ -1,5 +1,4 @@
-from GameCards_OriHasin.Card import Card
-from random import *
+from GameCards_OriHasin.DeckOfCards import DeckOfCards
 class Player:
     #מחלקה המגדירה קלף במשחק
     #Name,Amount, list1 -רשימה של קלפי השחקן, list2 = חפיסת קלפים המתקבלת ליצירת חבילת קלפים אישית לשחקן
@@ -9,13 +8,12 @@ class Player:
         self.Amount=Amount
         self.NumOfCards=NumOfCards
         self.list1=[]
-
     def __repr__(self):  # מתודה המדפיסה פרטי שחקן
             return (f'Player Details: {self.Name} , {self.Amount} , {self.list1}')
 
-    def setHand(self, list2): #מתודה היוצרת חבילת קלפים
+    def setHand(self,Deck1): #מתודה היוצרת חבילת קלפים
         for i in range(self.NumOfCards):
-            self.list1.append(list2.pop())
+            self.list1.append(Deck1.dealOne())
 
     def getCard(self): #מתודה המושכת קלף מהשחקן
         return self.list1.pop()

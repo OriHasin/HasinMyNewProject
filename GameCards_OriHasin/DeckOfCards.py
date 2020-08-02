@@ -12,9 +12,10 @@ class DeckOfCards:
         for i in self.list1:
             for x in self.list2:
                 self.list3.append(Card(i,x))
+
     def Shuflle(self):                   #מתודת ערבוב של קלפים
         if len(self.list3)<52:
-            print("You can't shuflle the deck after game began.")
+            print("You can't shuffle the deck after game began.")
             return
         shuffle(self.list3)
     def dealOne(self):                  #שולפת קלף מראש החפיסה
@@ -24,4 +25,4 @@ class DeckOfCards:
         shuffle(self.list3)
     def show(self):                   #מדפיסה את רשימת הקלפים
         for i in self.list3:
-            print(f'Card Details: {i.Suit} : {i.Value}' , end=' ')
+            print(i)
