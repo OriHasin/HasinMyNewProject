@@ -12,6 +12,8 @@ class Player:
             return (f'Player Details: {self.Name} , {self.Amount} , {self.list1}')
 
     def setHand(self,Deck1): #מתודה היוצרת חבילת קלפים
+        if type(Deck1) != DeckOfCards:#בדיקה אם לא נשלח לו חפיסת קלפים
+            raise ValueError("Send only DeckOfCards.")
         for i in range(self.NumOfCards):
             self.list1.append(Deck1.dealOne())
 
