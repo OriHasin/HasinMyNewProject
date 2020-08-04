@@ -32,6 +32,9 @@ class TestPlayer(TestCase):
         else:
             self.fail()
 
+    def test_repr_(self):#בדיקה לפונקציית הדפסת אובייקט
+        self.assertIn('Ori',self.Player1.__repr__())
+
     def test_set_hand1(self):#בדיקה שהפונקציה מכניסה קלף לחבילה האישית של המשתמש
         with patch('GameCards_OriHasin.DeckOfCards.DeckOfCards.dealOne') as dealOne_mocked:
             self.card1=Card("♣","Ace")
@@ -49,14 +52,95 @@ class TestPlayer(TestCase):
         else:
             self.fail()
 
-    def test_get_card(self):
-        pass
+    def test_get_card1(self):#בדיקה שהקלף האחרון מחבילת המשתמש אכן נשלף ואורך הרשימה התעדכן
+        self.Deck1=DeckOfCards()
+        self.Player1.setHand(self.Deck1)
+        self.last=self.Player1.list1[-1]
+        self.assertEqual(self.last,self.Player1.getCard())
+        self.assertEqual((len(self.Player1.list1)),4)
 
-    def test_add_card(self):
-        pass
+    def test_get_card2(self):#בדיקה שלא נשלף קלף אם החבילה האישית של השחקן ריקה
+        try:
+            self.Player1.getCard()
+        except:
+            pass
+        else:
+            self.fail()
 
-    def test_reduce_amount(self):
-        pass
+    def test_add_card1(self):#בדיקה שהקלף מתווסף לחבילת הקלפים של השחקן
+        self.card1=Card("♣","Ace")
+        self.Deck1=DeckOfCards()
+        self.Player1.setHand(self.Deck1)
+        self.Player1.addCard(self.card1)
+        self.assertEqual(self.Player1.list1[-1],self.card1)
 
-    def test_add_amount(self):
-        pass
+    def test_add_card2(self):#בדיקה שהאובייקט המתקבל הוא מסוג קלף
+        try:
+            self.Player1.addCard(2)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_reduce_amount1(self):#בדיקה שסכום השחקן מתעדכן לאחר חיסור הסכום המתקבל
+        self.Player1.Amount=8000
+        self.Player1.reduceAmount(800)
+        self.assertEqual(self.Player1.Amount,7200)
+
+    def test_reduce_amount2(self):#בדיקה שלא מתקבל בפונקציה סכום שלילי
+        try:
+            self.Player1.reduceAmount(-800)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_reduce_amount3(self):#בדיקה שלא מתקבל בפונקציה סכום '0'
+        try:
+            self.Player1.reduceAmount(0)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_reduce_amount4(self):#בדיקה שהפונקציה מקבלת אך ורק מספר שלם
+        try:
+            self.Player1.reduceAmount(80.20)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_reduce_amount5(self):#בדיקה שסכום השחקן לא נהיה שלילי
+        self.Player1.Amount=8000
+        self.Player1.reduceAmount(16000)
+        self.assertEqual(self.Player1.Amount,0)
+
+    def test_add_amount1(self):#בדיקה שהפונקציה מוסיפה את הסכום המתקבל לסכום השחקן
+        self.Player1.Amount=8000
+        self.Player1.addAmount(8000)
+        self.assertEqual(self.Player1.Amount,16000)
+
+    def test_add_amount2(self):#בדיקה שהערך המתקבל מסוג מספר שלם בלבד
+        try:
+            self.Player1.addAmount(8000.8)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_add_amount3(self):#בדיקה שלא מתקבל פרמטר שלילי
+        try:
+            self.Player1.addAmount(-8000)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_add_amount4(self):#בדיקה שלא מתקבל פרמטר '0'
+        try:
+            self.Player1.addAmount(0)
+        except:
+            pass
+        else:
+            self.fail()
