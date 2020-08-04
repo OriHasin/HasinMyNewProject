@@ -3,10 +3,14 @@ class Player:
     #מחלקה המגדירה קלף במשחק
     #Name,Amount, list1 -רשימה של קלפי השחקן, list2 = חפיסת קלפים המתקבלת ליצירת חבילת קלפים אישית לשחקן
 
-    def __init__(self,Name,Amount,NumOfCards=5): #מתודת קונסטרקטור
+    def __init__(self,Name,Amount,NumOfCards=5):#מתודת קונסטרקטור
         self.Name=Name
+        if self.Name == '': #בודק שלא מכניסים שם ריק
+            raise ValueError("Name can't be empty , Please enter a name of player ")
         self.Amount=Amount
         self.NumOfCards=NumOfCards
+        if self.NumOfCards<=0:
+            raise ValueError("Player can't be with '0' or negative number of cards")
         self.list1=[]
     def __repr__(self):  # מתודה המדפיסה פרטי שחקן
             return (f'Player Details: {self.Name} , {self.Amount} , {self.list1}')

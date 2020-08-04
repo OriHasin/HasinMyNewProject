@@ -7,7 +7,32 @@ from GameCards_OriHasin.Player import Player
 class TestPlayer(TestCase):
     def setUp(self):
         self.Player1=Player('Ori',1600)
-    def test_set_hand1(self): #בדיקה שהפונקציה מכניסה קלף לחבילה האישית של המשתמש
+
+    def test_init1(self):#בדיקת התנאי , לא נכנס לי שם ריק
+        try:
+            self.Player2=Player('',1600)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_init2(self):#בדיקה שלא מתקבל מס קלפים שלילי
+        try:
+            self.Player2=Player('Ori',1600,-1)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_init3(self):#בדיקה שלא מתקבל מס קלפים '0'
+        try:
+            self.Player2=Player('Ori',1600,0)
+        except:
+            pass
+        else:
+            self.fail()
+
+    def test_set_hand1(self):#בדיקה שהפונקציה מכניסה קלף לחבילה האישית של המשתמש
         with patch('GameCards_OriHasin.DeckOfCards.DeckOfCards.dealOne') as dealOne_mocked:
             self.card1=Card("♣","Ace")
             self.Deck1 = DeckOfCards()
@@ -15,6 +40,7 @@ class TestPlayer(TestCase):
             self.Player1.setHand(self.Deck1)
             self.assertTrue(self.Player1.list1[0]==self.card1)
             dealOne_mocked.assert_called_with()
+
     def test_set_hand2(self):#בדיקה שהפונקציה לא מקבלת פרמטר שלא מסוג DeckOfCards
         try:
             self.Player1.setHand(100)
@@ -22,6 +48,7 @@ class TestPlayer(TestCase):
             pass
         else:
             self.fail()
+
     def test_get_card(self):
         pass
 
