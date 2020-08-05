@@ -52,6 +52,11 @@ class TestPlayer(TestCase):
         else:
             self.fail()
 
+    def test_set_hand3(self):#בדיקה שהפונקציה מכניסה NumOfCards קלפים לחבילת השחקן
+        self.Deck1=DeckOfCards()
+        self.Player1.setHand(self.Deck1)
+        self.assertEqual(len(self.Player1.list1),self.Player1.NumOfCards)
+
     def test_get_card1(self):#בדיקה שהקלף האחרון מחבילת המשתמש אכן נשלף ואורך הרשימה התעדכן
         self.Deck1=DeckOfCards()
         self.Player1.setHand(self.Deck1)

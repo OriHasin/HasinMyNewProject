@@ -13,6 +13,7 @@ class Player:
         if self.NumOfCards<=0:
             raise ValueError("Player can't be with '0' or negative number of cards")
         self.list1=[]
+
     def __repr__(self):  # מתודה המדפיסה פרטי שחקן
             return (f'Player Details: {self.Name} , {self.Amount} , {self.list1}')
 
